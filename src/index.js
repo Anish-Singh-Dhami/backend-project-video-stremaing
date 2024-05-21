@@ -1,3 +1,4 @@
+import app from "./app.js";
 import connectDB from "./db/index.js";
 
 // just to use import statement instead of required("dotenv").config({path:"./env"}) , i.e. commonJS
@@ -7,4 +8,19 @@ dotenv.config({
     path: "./env"
 })
 
-connectDB();
+app.on("error", ()=>{
+    console.log("Express Side Error !!! ", error);
+})
+
+connectDB()
+.then(()=> {
+    app.listen(process.env.PORT || 8000, ()=> {
+        console.log(`Server Running at  http://localhost:${process.env.PORT}`);
+    })
+    app.get('/', (req, res)=> {
+        res.send("Hello There!!");
+    })
+})
+.catch((error) => {
+    console.log("Error in connection !!! ", error);
+})
