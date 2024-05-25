@@ -69,7 +69,7 @@ userSchema.methods.isPasswordCorrect = async function (password) {
 // generate access-tokens : used for authentication and authorization in web applications
 userSchema.methods.generateAccessToken = async function () {
     // generate through signing
-    const secreteKey = process.env.ACCESS_TOKEN_SECRET;
+    const secretKey = process.env.ACCESS_TOKEN_SECRET;
     const payload = {
         _id: this.id,
         email: this.email,
@@ -80,16 +80,16 @@ userSchema.methods.generateAccessToken = async function () {
         expiresIn: process.env.ACCESS_TOKEN_EXPIRY
     }
     // may take some time for computation 
-    return await jwt.sign(payload, secreteKey, options);
+    return await jwt.sign(payload, secretKey, options);
 }
 
 // generate referesh-tokens
 userSchema.methods.generateRefereshToken = async function () {
     const payload = { _id: this.id, }
-    const secreteKey = process.env.REFRESH_TOKEN_SECRETE;
+    const secretKey = process.env.REFRESH_TOKEN_SECRET;
     const options = { expiresIn: process.env.REFRESH_TOKEN_EXPIRY }
 
-    return await jwt.sign(payload, secreteKey, options);
+    return await jwt.sign(payload, secretKey, options);
 }
 
 export const User = mongoose.model("User", userSchema);
