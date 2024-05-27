@@ -1,5 +1,6 @@
 import multer from "multer"
-
+// a middle-ware to store file in disk-storage at destion : "./public/temp", 
+// with file-name : file.feildname with some unqiue-suffix to differentiate (and not overwrite the previous file with name fieldname).
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, "./public/temp");

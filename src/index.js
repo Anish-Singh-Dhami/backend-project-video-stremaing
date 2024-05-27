@@ -8,6 +8,7 @@ dotenv.config({
     path: "./env"
 })
 
+// on "error" event
 app.on("error", ()=>{
     console.log("Express Side Error !!! ", error);
 })

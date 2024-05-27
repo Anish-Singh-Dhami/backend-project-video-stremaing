@@ -18,4 +18,10 @@ app.use(express.urlencoded({
 }))
 app.use(cookieParser())
 
+import router from "./routes/user.routes.js";
+
+// will do all the jobs relate to the route /api/v1/user
+// like registeration, login
+app.use("/api/v1/user", router);
+
 export default app;
